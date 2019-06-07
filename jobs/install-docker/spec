@@ -3,6 +3,7 @@ name: install-docker
 
 templates: {}
 
-packages: []
+packages:
+  - xzutils
 
 properties: {}
