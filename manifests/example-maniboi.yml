@@ -9,7 +9,7 @@ instance_groups:
     networks:
       - name: default
     jobs:
-      - name: install-docker
+      - name: docker
         release: docker
 
 stemcells:

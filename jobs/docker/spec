@@ -1,0 +1,11 @@
+---
+name: docker
+
+templates:
+  bin/ctl: bin/ctl
+  bin/setup-cgroups: bin/setup-cgroups
+
+packages:
+  - docker
+
+properties: {}

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/docker
+LOG_DIR=/var/vcap/sys/log/docker
+PIDFILE=${RUN_DIR}/pid
+
+case $1 in
+
+  start)
+    mkdir -p $RUN_DIR $LOG_DIR
+    chown -R vcap:vcap $RUN_DIR $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    PATH="$PATH:/var/vcap/packages/docker/bin/"
+    PATH="$PATH:/var/vcap/packages/docker/docker/"
+    /var/vcap/jobs/docker/bin/setup-cgroups
+    exec /var/vcap/packages/docker/docker/dockerd
+      >>  $LOG_DIR/docker.stdout.log \
+      2>> $LOG_DIR/docker.stderr.log
+
+
+    ;;
+
+  stop)
+    kill -9 `cat $PIDFILE`
+    rm -f $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: ctl {start|stop}" ;;
+
+	esac

@@ -1,0 +1,15 @@
+set -e -x
+export DOCKER_VERSION=18.06.3
+
+
+cp -a ./* ${BOSH_INSTALL_TARGET}
+pushd ${BOSH_INSTALL_TARGET}
+
+tar xzf docker-${DOCKER_VERSION}-ce.tgz
+popd
+
+tar xzf git-2.20.1.tar.gz
+cd git-2.20.1
+./configure --prefix=${BOSH_INSTALL_TARGET}
+make  all
+make install

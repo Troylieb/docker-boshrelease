@@ -1,9 +1,0 @@
----
-name: install-docker
-
-templates: {}
-
-packages:
-  - xzutils
-
-properties: {}

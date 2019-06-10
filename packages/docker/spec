@@ -1,0 +1,8 @@
+---
+name: docker
+
+dependencies: []
+
+files:
+- docker-18.06.3-ce.tgz 
+- git-2.20.1.tar.gz
