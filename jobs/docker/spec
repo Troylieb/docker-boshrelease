@@ -2,10 +2,15 @@
 name: docker
 
 templates:
-  bin/ctl: bin/ctl
-  bin/setup-cgroups: bin/setup-cgroups
+  bin/docker: bin/docker
+  envrc:      envrc
+
+  etc/running/docker-compose.yml: etc/running/docker-compose.yml
 
 packages:
   - docker
 
-properties: {}
+properties:
+  recipe:
+    description: |
+      The full docker-compose recipe to run, via `docker-compose up -d'.

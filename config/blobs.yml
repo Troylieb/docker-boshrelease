@@ -1,6 +1,9 @@
-docker-18.06.3-ce.tgz:
+docker/docker-18.06.3-ce.tgz:
   size: 43844133
   sha: 79a983a41275bd7a660a42935504f5c1ff7a5858
-git-2.20.1.tar.gz:
+docker/docker-compose:
+  size: 16350840
+  sha: 043fec968aab2059f48958ef037e7b983e03863d
+docker/git-2.20.1.tar.gz:
   size: 7962304
   sha: 6439fb9afc9366f7bf1ddf8bfbe59998e0450ed3
