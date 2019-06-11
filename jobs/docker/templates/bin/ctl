@@ -2,7 +2,9 @@
 
 RUN_DIR=/var/vcap/sys/run/docker
 LOG_DIR=/var/vcap/sys/log/docker
-PIDFILE=${RUN_DIR}/pid
+DATA_DIR=/var/vcap/store/docker
+
+PIDFILE=${RUN_DIR}/docker.pid
 
 case $1 in
 
@@ -10,12 +12,14 @@ case $1 in
     mkdir -p $RUN_DIR $LOG_DIR
     chown -R vcap:vcap $RUN_DIR $LOG_DIR
 
-    echo $$ > $PIDFILE
-
     PATH="$PATH:/var/vcap/packages/docker/bin/"
     PATH="$PATH:/var/vcap/packages/docker/docker/"
     /var/vcap/jobs/docker/bin/setup-cgroups
-    exec /var/vcap/packages/docker/docker/dockerd
+    exec /var/vcap/packages/docker/docker/dockerd \
+      --pidfile $PIDFILE \
+      --group vcap \
+      --data-root ${DATA_DIR} \
+      --host unix://${RUN_DIR}/docker.sock
       >>  $LOG_DIR/docker.stdout.log \
       2>> $LOG_DIR/docker.stderr.log
 
