@@ -1,3 +1,2 @@
-- drain scripts to `docker-compose down`
 - air gap solution for `docker load' from known things (leverage SHIELD)
 - support for private registries
